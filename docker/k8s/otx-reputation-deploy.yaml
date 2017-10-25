@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka
+    component: otx-reputation
+  name: otx-reputation
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: reputation
+        component: otx-reputation
+    spec:
+      containers:
+      - name: otx-reputation
+        image: otx-reputation:0.0.1
+        env:
+          - name: APPLICATION_ID
+            value: "reputation-service"
+          - name: KAFKA_BOOTSTRAP_SERVER
+            value: kafka:9092
+          - name: METRIC_ENABLE
+            value: "true"
+          - name: REPUTATION_TOPIC
+            value: "reputation-otx"
