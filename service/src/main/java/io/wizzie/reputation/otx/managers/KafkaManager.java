@@ -46,7 +46,7 @@ public class KafkaManager {
         Properties consumerProperties = config.getProperties();
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, appId);
+        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, String.format("%s-%s", appId, "otx"));
 
 
         producer = new KafkaProducer<>(producerProperties);
