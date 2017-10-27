@@ -19,6 +19,19 @@
         <module>service</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>wizzie-release</id>
+            <name>Wizzie Release Repository</name>
+            <url>s3://wizzie-mvn-repo/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>wizzie-snapshot</id>
+            <name>Wizzie Snapshot Repository</name>
+            <url>s3://wizzie-mvn-repo/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <repositories>
         <repository>
             <id>wizzie-release</id>
