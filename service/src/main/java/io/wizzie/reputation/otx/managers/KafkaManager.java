@@ -66,7 +66,7 @@ public class KafkaManager {
         List<Map> dataToSave = new ArrayList<>();
         List<String> keysToSave = new ArrayList<>();
 
-        for (int i = 1; i < data.size(); i++) {
+        for (int i = 0; i < data.size(); i++) {
 
             String[] nextLine = data.get(i);
 

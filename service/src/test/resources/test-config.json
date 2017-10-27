@@ -1,0 +1,10 @@
+{
+  "bootstrap.kafka.topics":["__reputation_otx_bootstrap"],
+  "bootstrap.servers": "192.168.1.106:9092",
+  "reputation.topic": "otx-reputation",
+  "interval.ms": 1800000,
+  "metric.enable": true,
+  "metric.listeners": ["io.wizzie.reputation.otx.metrics.ConsoleMetricListener"],
+  "metric.interval": 60000,
+  "application.id": "reputation-service"
+}
