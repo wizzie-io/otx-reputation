@@ -1,8 +1,8 @@
 # OTX-REPUTATION
 
-OTX-REPUTATION is a service that pulls IP reputation data from AlienVault and send it to a Kafka topic. This information is sended as json events and can be readed by other services in order to use it.
+otx-reputation is a service that pulls IP reputation data from AlienVault and send it to a Kafka topic. This information is sended as json events and can be readed by other services in order to use it.
 
-##Compiling sources
+## Compiling sources
 
 To build this project you can use `maven` tool. 
 
@@ -30,7 +30,7 @@ If you want to build the docker image, make sure that you have the docker servic
 mvn clean package -P docker
 ```
 
-##Usage
+## Usage
 The service have two scripts at `bin` directory: `otx-generate-list.sh` and `otx-service-start.sh`. 
 
 ### otx-generate-list.sh
@@ -55,7 +55,7 @@ This script starts the otx service reading the config from `config.json`. It sen
 ```
 The IP is the kafka key and the json is the value.
 
-##Configuration
+## Configuration
 The configuration is defined as follows:
 ``` 
 {
