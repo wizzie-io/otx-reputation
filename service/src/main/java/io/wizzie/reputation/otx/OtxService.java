@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.wizzie.bootstrapper.builder.BootstrapperBuilder;
 import io.wizzie.bootstrapper.builder.Config;
-import io.wizzie.reputation.otx.metrics.MetricsManager;
+import io.wizzie.metrics.MetricsManager;
 import io.wizzie.reputation.otx.utils.ConfigProperties;
 import io.wizzie.reputation.otx.utils.Utils;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class OtxService {
                 Config config = new Config(args[0]);
 
                 UpdaterService updaterService = new UpdaterService(config.clone());
-                MetricsManager metricsManager = new MetricsManager(config.clone());
+                MetricsManager metricsManager = new MetricsManager(config.clone().getMapConf());
                 metricsManager.start();
 
                 BootstrapperBuilder
