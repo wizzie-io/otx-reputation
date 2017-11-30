@@ -124,6 +124,5 @@ public class KafkaManagerUnitTest {
 
     @AfterClass
     public static void stop(){
-        CLUSTER.stop();
     }
 }
