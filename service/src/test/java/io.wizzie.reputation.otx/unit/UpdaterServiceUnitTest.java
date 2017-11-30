@@ -66,6 +66,5 @@ public class UpdaterServiceUnitTest {
 
     @AfterClass
     public static void stop(){
-        CLUSTER.stop();
     }
 }
