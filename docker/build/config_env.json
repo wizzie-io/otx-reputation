@@ -2,7 +2,7 @@
   "application.id": "${APPLICATION_ID}",
   "bootstrap.servers": "${KAFKA_BOOTSTRAP_SERVER}",
   "metric.enable": ${METRIC_ENABLE},
-  "metric.listeners": ["io.wizzie.reputation.otx.metrics.ConsoleMetricListener"],
+  "metric.listeners": ["io.wizzie.metrics.listeners.KafkaMetricListener"],
   "metric.interval": ${METRIC_INTERVAL},
   "bootstrap.kafka.topics":["__reputation_otx_bootstrap"],
   "reputation.topic": "${REPUTATION_TOPIC}",
