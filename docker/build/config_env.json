@@ -4,6 +4,7 @@
   "metric.enable": ${METRIC_ENABLE},
   "metric.listeners": ["io.wizzie.metrics.listeners.KafkaMetricListener"],
   "metric.interval": ${METRIC_INTERVAL},
+  "metric.databag": {"component":"otx-reputation"},
   "bootstrap.kafka.topics":["__reputation_otx_bootstrap"],
   "reputation.topic": "${REPUTATION_TOPIC}",
   "interval.ms": ${INTERVAL_MS}
