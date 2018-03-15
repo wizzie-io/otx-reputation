@@ -133,7 +133,7 @@
                             <appendAssemblyId>false</appendAssemblyId>
                             <archive>
                                 <manifest>
-                                    <mainClass>io.wizzie.ks.enricher.Enricher</mainClass>
+                                    <mainClass>io.wizzie.reputation.otx.OtxService</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
