@@ -47,7 +47,7 @@
         </file>
 
         <file>
-            <source>${project.parent.basedir}/service/src/main/resources/log4j.xml</source>
+            <source>${project.parent.basedir}/service/src/main/resources/log4j2.xml</source>
             <outputDirectory>config</outputDirectory>
         </file>
     </files>
