@@ -18,27 +18,6 @@
         <module>service</module>
     </modules>
 
-    <distributionManagement>
-        <repository>
-            <id>wizzie-release</id>
-            <name>Wizzie Release Repository</name>
-            <url>s3://wizzie-mvn-repo/release</url>
-        </repository>
-        <snapshotRepository>
-            <id>wizzie-snapshot</id>
-            <name>Wizzie Snapshot Repository</name>
-            <url>s3://wizzie-mvn-repo/snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>wizzie-release</id>
-            <name>Wizzie Release Repository</name>
-            <url>s3://wizzie-mvn-repo/release</url>
-        </repository>
-    </repositories>
-
     <profiles>
         <profile>
             <id>dist</id>
@@ -60,14 +39,6 @@
 
 
     <build>
-        <extensions>
-            <extension>
-                <groupId>org.springframework.build</groupId>
-                <artifactId>aws-maven</artifactId>
-                <version>5.0.0.RELEASE</version>
-            </extension>
-        </extensions>
-
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
