@@ -64,7 +64,7 @@ The configuration is defined as follows:
   "reputation.topic": "otx-reputation",
   "interval.ms": 1800000,
   "metric.enable": true,
-  "metric.listeners": ["io.wizzie.reputation.otx.metrics.ConsoleMetricListener"],
+  "metric.listeners": ["io.wizzie.metrics.listeners.ConsoleMetricListener"],
   "metric.interval": 60000,
   "application.id": "reputation-service"
 }
