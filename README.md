@@ -1,3 +1,8 @@
+[![CircleCI](https://circleci.com/gh/wizzie-io/otx-reputation.svg?style=svg)](https://circleci.com/gh/wizzie-io/otx-reputation)
+[![GitHub release](https://img.shields.io/github/release/wizzie-io/otx-reputation.svg)](https://github.com/wizzie-io/otx-reputation/releases/latest) 
+[![wizzie-io](https://img.shields.io/badge/powered%20by-wizzie.io-F68D2E.svg)](https://github.com/wizzie-io/)
+
+
 # OTX-REPUTATION
 
 otx-reputation is a service that pulls IP reputation data from AlienVault and send it to a Kafka topic. This information is sended as json events and can be readed by other services in order to use it.
