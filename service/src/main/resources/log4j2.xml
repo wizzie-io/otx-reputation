@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="MyApp" packages="">
+    <Appenders>
+        <File name="FileLog" fileName="/var/log/otx-reputation/otx-reputation.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %highlight{%p} [%c{3.}] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %highlight{%p} [%c{3.}] %m%n"/>
+        </Console>
+        <File name="FileLogOtxReputation" fileName="/var/log/otx-reputation/otx-reputation.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %highlight{%p} [%c{3.}] %highlight{%m{ansi}}%n</Pattern>
+            </PatternLayout>
+        </File>
+        <Console name="ConsoleOtxReputation" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %highlight{%p} [%c{3.}] %highlight{%m{ansi}}%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="io.wizzie.reputation.otx" level="info" additivity="false">
+            <AppenderRef ref="FileLogOtxReputation"/>
+            <AppenderRef ref="ConsoleOtxReputation"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="FileLog"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

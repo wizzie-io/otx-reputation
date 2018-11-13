@@ -10,7 +10,7 @@ RUN mkdir -p /var/log/reputation-otx
 ADD reputation-otx.tar.gz /opt/
 RUN rm -f /opt/reputation-otx/config/*
 
-ADD log4j.xml /opt/reputation-otx/config/
+ADD log4j2.xml /opt/reputation-otx/config/
 ADD config_env.json /opt/reputation-otx/config/
 ADD otx-service-start.sh /bin
 
