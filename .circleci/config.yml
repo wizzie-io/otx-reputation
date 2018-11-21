@@ -1,0 +1,97 @@
+preconfiguration: &preconfiguration
+  working_directory: /reputation-otx
+  docker:
+  - image: gcr.io/wizzie-registry/data-builder:stable
+  environment:
+  - APP_NAME: "reputation-otx"
+
+image: &cached
+  paths:
+  - reputation-otx.tar
+
+workspace: &workspace
+  at: /reputation-otx/caches
+
+
+version: 2
+jobs:
+  build:
+    <<: *preconfiguration
+    steps:
+    - checkout
+    - setup_remote_docker
+    - restore_cache:
+        keys:
+        - service-cache-v1-{{ checksum "service/pom.xml" }}
+    - restore_cache:
+        keys:
+        - maven-cache-v2-{{ checksum "service/pom.xml" }}
+    - run:
+        name: Build application Docker image
+        command: |
+          mvn package -P docker
+          mkdir -p caches
+          docker save -o caches/${APP_NAME}.tar ${APP_NAME}
+    - save_cache:
+             key: service-cache-v1-{{ checksum "service/pom.xml" }}
+             paths:
+               - service/target/dependencies
+    - save_cache:
+        key: maven-cache-v2-{{ checksum "service/pom.xml" }}
+        paths:
+        - ~/.m2
+    - persist_to_workspace:
+        root: caches
+        <<: *cached
+  deploy:
+    <<: *preconfiguration
+    steps:
+    - attach_workspace:
+        <<: *workspace
+    - setup_remote_docker
+    - deploy:
+        name: Tag master and deploy
+        command: |
+          set +o pipefail
+          docker load -i /${APP_NAME}/caches/${APP_NAME}.tar | true
+          echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          gcloud config set project $GCLOUD_PROJECT
+          docker tag ${APP_NAME}:latest gcr.io/${GCLOUD_PROJECT}/${APP_NAME}:latest
+          gcloud docker -- push gcr.io/${GCLOUD_PROJECT}/${APP_NAME}:latest
+  tagged-deploy:
+    <<: *preconfiguration
+    steps:
+    - attach_workspace:
+        <<: *workspace
+    - setup_remote_docker
+    - deploy:
+        name: Tag with latest and git tag and deploy both
+        command: |
+          set +o pipefail
+          docker load -i /${APP_NAME}/caches/${APP_NAME}.tar | true
+          echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          gcloud config set project $GCLOUD_PROJECT
+          docker tag ${APP_NAME}:latest gcr.io/${GCLOUD_PROJECT}/${APP_NAME}:stable
+          gcloud docker -- push gcr.io/${GCLOUD_PROJECT}/${APP_NAME}:stable
+          gcloud container images add-tag gcr.io/${GCLOUD_PROJECT}/${APP_NAME}:stable gcr.io/${GCLOUD_PROJECT}/${APP_NAME}:${CIRCLE_TAG}
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+    - build:
+        filters:
+          tags:
+            only: /.*/
+    - deploy:
+        requires:
+        - build
+    - tagged-deploy:
+        requires:
+        - build
+        filters:
+          branches:
+            ignore: /.*/
+          tags:
+            only: /.*/
