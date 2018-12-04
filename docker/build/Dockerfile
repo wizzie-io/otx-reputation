@@ -2,7 +2,7 @@ FROM openjdk:8-jre-slim
 
 MAINTAINER agomez@wizzie.io
 
-RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/log/reputation-otx
 
