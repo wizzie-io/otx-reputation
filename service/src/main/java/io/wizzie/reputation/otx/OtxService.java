@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.wizzie.bootstrapper.builder.BootstrapperBuilder;
 import io.wizzie.bootstrapper.builder.Config;
 import io.wizzie.metrics.MetricsManager;
+import io.wizzie.reputation.otx.logo.LogoPrinter;
 import io.wizzie.reputation.otx.utils.ConfigProperties;
 import io.wizzie.reputation.otx.utils.Utils;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ public class OtxService {
     static AtomicBoolean running;
 
     public static void main(String[] args) throws IOException {
+        LogoPrinter.PrintLogo();
         if (args.length != 0) {
 
             if (!args[0].equals("generate")) {
